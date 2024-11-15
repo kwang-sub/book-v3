@@ -143,20 +143,25 @@ where e.emp_no = de.emp_no
 select md5('abc');
 select sha('abc');
 
-create table tab_binary(
-    col_md5 binary(16),
-    col_sha binary(20),
+create table tab_binary
+(
+    col_md5      binary(16),
+    col_sha      binary(20),
     col_sha2_256 binary(32)
 );
-insert into tab_binary values (unhex(md5('abc')), unhex(sha('abc')), unhex(sha2('abc', 256)));
-select * from tab_binary;
-select hex(col_md5), hex(col_sha), hex(col_sha2_256) from tab_binary;
+insert into tab_binary
+values (unhex(md5('abc')), unhex(sha('abc')), unhex(sha2('abc', 256)));
+select *
+from tab_binary;
+select hex(col_md5), hex(col_sha), hex(col_sha2_256)
+from tab_binary;
 
-create table tb_accesslog(
-    access_id bigint primary key not null auto_increment,
-    access_url varchar(1000) not null ,
-    access_dttm datetime not null,
-    index ix_accessurl((md5(access_url)))
+create table tb_accesslog
+(
+    access_id   bigint primary key not null auto_increment,
+    access_url  varchar(1000)      not null,
+    access_dttm datetime           not null,
+    index ix_accessurl ((md5(access_url)))
 );
 
 insert into tb_accesslog
@@ -166,19 +171,19 @@ explain
 select t.*
 from tb_accesslog t
 where 1 = 1
-and md5(t.access_url) = md5('http://matt.com');
+  and md5(t.access_url) = md5('http://matt.com');
 
 explain
 select t.*
 from tb_accesslog t
 where 1 = 1
-and t.access_url = 'http://matt.com';
+  and t.access_url = 'http://matt.com';
 
 explain
 select sleep(1.5)
 from employees t
 where 1 = 1
-and t.emp_no between 10001 and 10010;
+  and t.emp_no between 10001 and 10010;
 
 select benchmark(10000000, md5('abcdefghijk'));
 select benchmark(10000000, (select count(*) from salaries s));
@@ -191,10 +196,58 @@ explain
 select json_pretty(t.doc)
 from employee_docs t
 where 1 = 1
-and t.emp_no = 10005;
+  and t.emp_no = 10005;
 
 explain
 select t.emp_no, JSON_STORAGE_SIZE(t.doc)
 from employee_docs t
 where 1 = 1
 limit 2;
+
+explain
+select t.emp_no, json_extract(t.doc, "$.first_name")
+from employee_docs t
+where 1 = 1;
+
+select t.emp_no, JSON_UNQUOTE(json_extract(t.doc, "$.first_name"))
+from employee_docs t
+where 1 = 1;
+
+select t.emp_no, t.doc -> "$.first_name"
+from employee_docs t
+where 1 = 1;
+
+select t.emp_no, t.doc ->> "$.first_name"
+from employee_docs t
+where 1 = 1;
+
+explain
+select t.*
+from employee_docs t
+where 1 = 1
+  and JSON_CONTAINS(t.doc, '"Christian"', '$.first_name');
+
+select json_object(
+               "empNo", emp_no,
+               "salary", salary
+       )
+from salaries
+limit 3;
+
+explain
+select t.dept_no, JSON_OBJECTAGG(t.emp_no, t.from_date)
+from dept_manager t
+where 1 = 1
+  and dept_no in ('d001', 'd002')
+group by t.dept_no;
+
+
+select e2.emp_no, e2.first_name, e2.gender
+from employee_docs e1,
+     JSON_TABLE(doc, "$" columns (
+         emp_no int path "$.emp_no",
+         gender char(1) path "$.gender",
+         first_name varchar(20) path "$.first_name"
+         )
+     ) as e2
+where e1.emp_no in (10001, 10002);
