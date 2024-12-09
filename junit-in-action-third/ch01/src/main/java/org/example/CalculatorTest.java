@@ -1,10 +1,25 @@
 package org.example;
 
 public class CalculatorTest {
-    public static void main(String[] args) {
-        Calculator calc = new Calculator();
-        double result = calc.add(10, 50);
+
+    private int nbErrors = 0;
+
+    public void testAdd() {
+        Calculator calculator = new Calculator();
+        double result = calculator.add(10, 50);
         if (result != 60)
-            System.out.println("Bad result: " + result);
+            throw new IllegalStateException("Bad result: " + result);
+    }
+
+    public static void main(String[] args) {
+        CalculatorTest test = new CalculatorTest();
+        try {
+            test.testAdd();
+        } catch (Exception e) {
+            test.nbErrors++;
+            e.printStackTrace();
+        }
+        if (test.nbErrors > 0)
+            throw new IllegalStateException("There where " + test.nbErrors + " error(s)");
     }
 }
