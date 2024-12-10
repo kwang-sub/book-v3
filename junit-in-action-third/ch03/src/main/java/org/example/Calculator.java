@@ -1,4 +1,4 @@
-/*
+package org.example;/*
  * ========================================================================
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -18,8 +18,6 @@
  *
  * ========================================================================
  */
-
-package org.example;
 
 public class Calculator {
     public double add(double number1, double number2) {

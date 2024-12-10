@@ -10,12 +10,13 @@ repositories {
 }
 
 dependencies {
-    implementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    // https://mvnrepository.com/artifact/org.assertj/assertj-core
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.26.3'
+    testImplementation platform('org.junit:junit-bom:5.10.0') // JUnit 5 BOM
+    testImplementation 'org.junit.jupiter:junit-jupiter'      // JUnit 5
+    implementation 'junit:junit:4.13.2'                   // JUnit 4
+    testImplementation 'junit:junit:4.13.2'                   // JUnit 4
+    testImplementation 'org.junit.vintage:junit-vintage-engine' // JUnit Vintage Engine
+    testImplementation 'org.assertj:assertj-core:3.26.3'      // AssertJ
 
-    testImplementation 'junit:junit:4.13.2'
 }
 
 test {

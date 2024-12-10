@@ -29,7 +29,7 @@ import org.junit.runner.notification.RunNotifier;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class CustomTestRunner extends Runner {
+public class CustomTestRunner extends Runner  {
 
     private Class<?> testedClass;
 
