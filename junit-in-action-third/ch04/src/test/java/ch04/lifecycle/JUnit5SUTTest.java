@@ -1,30 +1,29 @@
 package ch04.lifecycle;
 
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class JUnit4SUTTest {
-
+public class JUnit5SUTTest {
     private static ResourceForAllTests resourceForAllTests;
     private SUT systemUnderTest;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         resourceForAllTests = new ResourceForAllTests("테스트를 위한 리소스");
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
         resourceForAllTests.close();
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         systemUnderTest = new SUT("테스트 대상 시스템");
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         systemUnderTest.close();
     }
@@ -42,7 +41,7 @@ public class JUnit4SUTTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void myThirdTest() {
         assertThat(2).isEqualTo(1);
     }

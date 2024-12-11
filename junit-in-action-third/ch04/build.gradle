@@ -19,5 +19,8 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+//        excludeTags 'repository'
+//        includeTags 'repository'
+    }
 }
