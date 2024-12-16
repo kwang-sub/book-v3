@@ -20,6 +20,8 @@
  */
 package org.example.ch16traditional.entity;
 
+import java.util.Objects;
+
 public class Passenger {
     private String name;
     private Country country;
@@ -44,4 +46,23 @@ public class Passenger {
         this.country = country;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Passenger passenger = (Passenger) o;
+        return Objects.equals(name, passenger.name) && Objects.equals(country, passenger.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, country);
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "name='" + name + '\'' +
+                ", country=" + country +
+                '}';
+    }
 }

@@ -18,45 +18,24 @@
  *
  * ========================================================================
  */
-package org.example.ch16traditional.entity;
+package org.example.newfeature.spring;
 
-import java.util.Objects;
+import org.springframework.context.ApplicationEvent;
 
-public class Country {
-    private String name;
-    private String codeName;
+public class PassengerRegistrationEvent extends ApplicationEvent {
 
-    public Country(String name, String codeName) {
-        this.name = name;
-        this.codeName = codeName;
-    }
+	private Passenger passenger;
 
-    public String getName() {
-        return name;
-    }
+	public PassengerRegistrationEvent(Passenger passenger) {
+		super(passenger);
+		this.passenger = passenger;
+	}
 
-    public String getCodeName() {
-        return codeName;
-    }
+	public Passenger getPassenger() {
+		return passenger;
+	}
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Country country = (Country) o;
-        return Objects.equals(name, country.name) && Objects.equals(codeName, country.codeName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, codeName);
-    }
-
-    @Override
-    public String toString() {
-        return "Country{" +
-                "name='" + name + '\'' +
-                ", codeName='" + codeName + '\'' +
-                '}';
-    }
+	public void setPassenger(Passenger passenger) {
+		this.passenger = passenger;
+	}
 }

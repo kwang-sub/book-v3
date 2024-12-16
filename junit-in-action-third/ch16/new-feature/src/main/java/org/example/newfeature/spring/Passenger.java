@@ -18,45 +18,64 @@
  *
  * ========================================================================
  */
-package org.example.ch16traditional.entity;
+package org.example.newfeature.spring;
 
 import java.util.Objects;
 
-public class Country {
+public class Passenger {
     private String name;
-    private String codeName;
+    private Country country;
+    private boolean isRegistered;
 
-    public Country(String name, String codeName) {
+    public Passenger(String name) {
         this.name = name;
-        this.codeName = codeName;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getCodeName() {
-        return codeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Country country = (Country) o;
-        return Objects.equals(name, country.name) && Objects.equals(codeName, country.codeName);
+    public Country getCountry() {
+        return country;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, codeName);
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+    public boolean isRegistered() {
+        return isRegistered;
+    }
+
+    public void setIsRegistered(boolean isRegistered) {
+        this.isRegistered = isRegistered;
     }
 
     @Override
     public String toString() {
-        return "Country{" +
+        return "Passenger{" +
                 "name='" + name + '\'' +
-                ", codeName='" + codeName + '\'' +
+                ", country=" + country +
+                ", registered=" + isRegistered +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Passenger passenger = (Passenger) o;
+        return isRegistered == passenger.isRegistered &&
+                Objects.equals(name, passenger.name) &&
+                Objects.equals(country, passenger.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, country, isRegistered);
+    }
+
 }

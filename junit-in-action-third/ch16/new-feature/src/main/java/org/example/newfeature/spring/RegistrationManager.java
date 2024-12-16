@@ -18,45 +18,24 @@
  *
  * ========================================================================
  */
-package org.example.ch16traditional.entity;
+package org.example.newfeature.spring;
 
-import java.util.Objects;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Service;
 
-public class Country {
-    private String name;
-    private String codeName;
+@Service
+public class RegistrationManager implements ApplicationContextAware {
+	private ApplicationContext applicationContext;
 
-    public Country(String name, String codeName) {
-        this.name = name;
-        this.codeName = codeName;
-    }
+	public ApplicationContext getApplicationContext() {
+		return applicationContext;
+	}
 
-    public String getName() {
-        return name;
-    }
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
 
-    public String getCodeName() {
-        return codeName;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Country country = (Country) o;
-        return Objects.equals(name, country.name) && Objects.equals(codeName, country.codeName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, codeName);
-    }
-
-    @Override
-    public String toString() {
-        return "Country{" +
-                "name='" + name + '\'' +
-                ", codeName='" + codeName + '\'' +
-                '}';
-    }
 }
