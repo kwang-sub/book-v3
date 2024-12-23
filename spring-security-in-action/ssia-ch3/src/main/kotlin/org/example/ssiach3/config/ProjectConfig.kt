@@ -8,16 +8,17 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.NoOpPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.provisioning.UserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
+import javax.sql.DataSource
 
 @Configuration
 class ProjectConfig {
 
     @Bean
-    fun userDetailsService(): UserDetailsService {
-        val user = User("john", "12345", "read")
-        return InMemoryUserDetailsService(listOf(user))
+    fun userDetailsService(datasource: DataSource): UserDetailsService {
+        return JdbcUserDetailsManager(datasource)
     }
 
     @Bean
