@@ -17,27 +17,9 @@ class ProductConfig {
     @Autowired
     private lateinit var customAuthenticationProvider: CustomAuthenticationProvider
 
-//    @Bean
-//    fun userDetailsService(): UserDetailsService {
-//        val inMemoryUserDetailsManager = InMemoryUserDetailsManager()
-//        val user = User.withUsername("john")
-//            .password("12345")
-//            .authorities("read")
-//            .build()
-//        inMemoryUserDetailsManager.createUser(user)
-//
-//        return inMemoryUserDetailsManager
-//    }
-//
-//    @Bean
-//    fun passwordEncoder(): PasswordEncoder {
-//        return NoOpPasswordEncoder.getInstance()
-//    }
-
-
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
-        http.authenticationProvider(customAuthenticationProvider)
+//        http.authenticationProvider(customAuthenticationProvider)
         http.httpBasic()
         http.authorizeRequests().anyRequest().authenticated()
         return http.build()

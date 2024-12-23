@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class CustomAuthenticationProvider : AuthenticationProvider {
+
     override fun authenticate(authentication: Authentication): Authentication {
         val username = authentication.name
         val password = authentication.credentials.toString()
@@ -21,6 +22,4 @@ class CustomAuthenticationProvider : AuthenticationProvider {
     override fun supports(authentication: Class<*>?): Boolean {
         return UsernamePasswordAuthenticationToken::class.java.isAssignableFrom(authentication)
     }
-
-
 }
