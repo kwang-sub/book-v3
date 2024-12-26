@@ -33,4 +33,17 @@ class HelloControllerTest {
         mvc.perform(get("/hello").with(httpBasic("jane", "12345")))
                 .andExpect(status().isForbidden());
     }
+
+    @Test
+    void testCiao() throws Exception {
+        mvc.perform(get("/ciao").with(httpBasic("jane", "12345")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value("Ciao!"));
+    }
+
+    @Test
+    void testCiao2() throws Exception {
+        mvc.perform(get("/ciao").with(httpBasic("john", "12345")))
+                .andExpect(status().isForbidden());
+    }
 }
