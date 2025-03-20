@@ -12,6 +12,7 @@ public class SumWhile {
         int i = 1;
         while (i <= n) {
             sum += i;
+            System.out.println(i);
         }
         System.out.println(sum);
     }
