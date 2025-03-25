@@ -8,7 +8,7 @@ fun main() {
 //    q7(2)
 //    println(q8(5))
 //    println(q9(6, 4))
-    q13()
+    q16()
 }
 
 fun q7(n: Int) {
@@ -109,6 +109,37 @@ fun q13() {
             }
             print(String.format("%3d", i + j))
         }
+        println()
+    }
+}
+
+fun q14() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var n = 0
+    while (n <= 0) {
+        print("n: ")
+        n = br.readLine().toInt()
+    }
+
+    for (i in 1..n) {
+        for (j in 1..n) {
+            print("*")
+        }
+        println()
+    }
+}
+
+fun q16() {
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    var n = 0
+    while (n <= 0) {
+        print("n: ")
+        n = br.readLine().toInt()
+    }
+
+    for (i in 1..n) {
+        for (j in 1..n - i) print(" ")
+        for (j in 1..(i - 1) * 2 + 1) print(i % 10)
         println()
     }
 }
