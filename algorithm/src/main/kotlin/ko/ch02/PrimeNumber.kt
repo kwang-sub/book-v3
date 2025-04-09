@@ -1,8 +1,7 @@
 package ko.ch02
 
 fun main() {
-    primeNumber2()
-//    test()
+    primeNumber3()
 }
 
 fun primeNumber1() {
@@ -40,6 +39,38 @@ fun primeNumber2() {
         }
     }
 
+
+    println("나눗셈을 수행한 횟수: $counter")
+}
+
+fun primeNumber3() {
+    var counter = 0
+    var ptr = 0
+    val prime = IntArray(500)
+
+    prime[ptr++] = 2
+    prime[ptr++] = 3
+    for (n in 5..1000 step 2) {
+        var i = 1
+        var flag = false
+        while (prime[i] * prime[i] <= n) {
+            counter += 2
+            if (n % prime[i] == 0) {
+                flag = true
+                break
+            }
+            i++
+        }
+
+        if (!flag) {
+            prime[ptr++] = n
+            counter++
+        }
+    }
+
+    for (i in 0..ptr) {
+        println(prime[i])
+    }
 
     println("나눗셈을 수행한 횟수: $counter")
 }
