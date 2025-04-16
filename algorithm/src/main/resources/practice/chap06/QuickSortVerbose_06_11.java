@@ -1,4 +1,6 @@
 package practice.chap06;
+import ja.IntStack;
+
 import java.util.Scanner;
 
 class QuickSortVerbose_06_11 {

@@ -1,4 +1,6 @@
 package practice.chap04;
+import ja.IntStack;
+
 import java.util.Scanner;
 
 class IntStackTesterEx_04_01 {
