@@ -1,4 +1,4 @@
-package ja;
+package ja.ch04;
 
 public class IntStack {
     private int max;

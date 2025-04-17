@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class Max3Test {
+class Max3DualStackTest {
     @Test
     void 최대값테스트() {
         // given

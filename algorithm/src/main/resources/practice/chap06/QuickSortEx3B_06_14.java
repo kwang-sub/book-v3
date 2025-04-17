@@ -1,5 +1,5 @@
 package practice.chap06;
-import ja.IntStack;
+import ja.ch04.IntStack;
 
 import java.util.Scanner;
 // 퀵정렬(임의로 추출한 ３요소의 중앙값을 피벗으로 합니다. : 비재귀버전)

@@ -1,5 +1,5 @@
 package practice.chap06;
-import ja.IntStack;
+import ja.ch04.IntStack;
 
 import java.util.Scanner;
 // 퀵정렬(머리/중앙/꼬리요소를 정렬하여 중앙값을 피벗으로 합니다. : 비재귀버전)

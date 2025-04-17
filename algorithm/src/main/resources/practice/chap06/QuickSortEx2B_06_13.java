@@ -1,5 +1,5 @@
 package practice.chap06;
-import ja.IntStack;
+import ja.ch04.IntStack;
 
 import java.util.Scanner;
 // 퀵정렬(요솟수가  9이하면 단순삽입정렬로 바꿈：비재귀버전)

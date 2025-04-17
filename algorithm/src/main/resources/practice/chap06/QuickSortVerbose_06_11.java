@@ -1,5 +1,5 @@
 package practice.chap06;
-import ja.IntStack;
+import ja.ch04.IntStack;
 
 import java.util.Scanner;
 
