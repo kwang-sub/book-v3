@@ -26,31 +26,43 @@ public class IntQueue {
     }
 
     public int enqueue(int x) {
-        if(num >= max) throw new OverflowQueException();
+        if (num >= max) {
+            throw new OverflowQueException();
+        }
         que[rear++] = x;
         num++;
-        if (rear >= max) rear = 0;
+        if (rear >= max) {
+            rear = 0;
+        }
         return x;
     }
 
     public int dequeue() {
-        if (num <= 0) throw new EmptyQueException();
+        if (num <= 0) {
+            throw new EmptyQueException();
+        }
         int result = que[front++];
         num--;
-        if (front >= max) front = 0;
+        if (front >= max) {
+            front = 0;
+        }
 
         return result;
     }
 
     public int peek() {
-        if (num <= 0) throw new EmptyQueException();
+        if (num <= 0) {
+            throw new EmptyQueException();
+        }
         return que[front];
     }
 
     public int indexOf(int x) {
         for (int i = 0; i < num; i++) {
             int idx = i + front % max;
-            if (que[idx] == x) return idx;
+            if (que[idx] == x) {
+                return idx;
+            }
         }
         return -1;
     }
@@ -80,5 +92,15 @@ public class IntQueue {
             System.out.print(que[(i + front) % max] + " ");
         }
         System.out.println();
+    }
+
+    public int search(int x) {
+        for (int i = 0; i < num; i++) {
+            int idx = (i + front) % max;
+            if (que[idx] == x) {
+                return i + 1;
+            }
+        }
+        return 0;
     }
 }
