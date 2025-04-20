@@ -24,8 +24,8 @@ public class IntDeque {
         if (--front < 0) {
             front = max - 1;
         }
-        que[front] = x;
         num++;
+        que[front] = x;
         return x;
     }
 
@@ -33,11 +33,11 @@ public class IntDeque {
         if (num >= max) {
             return -1;
         }
-        num++;
-        if (++rear == max) {
+        que[rear++] = x;
+        if (rear >= max) {
             rear = 0;
         }
-        que[rear] = x;
+        num++;
         return x;
     }
 
@@ -45,20 +45,22 @@ public class IntDeque {
         if (num <= 0) {
             return -1;
         }
-        int i = que[front];
-        if (++front >= max) { front = 0;}
+        int result = que[front];
+        if (++front >= max) {
+            front = 0;
+        }
         num--;
-        return i;
+        return result;
     }
 
     public int dequeueRe() {
         if (num <= 0) {
             return -1;
         }
-        int i = que[rear];
-        if (--rear < 0)
+        if (--rear < 0) {
             rear = max - 1;
+        }
         num--;
-        return i;
+        return que[rear];
     }
 }

@@ -1,6 +1,7 @@
 package ja.ch04;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,20 @@ class IntDequeTest {
     @BeforeEach
     void setUp() {
         deque = new IntDeque(5);
+    }
+
+    @Test
+    void test() {
+        deque.enqueueFr(1);
+        deque.enqueueFr(2);
+        deque.enqueueFr(3);
+        deque.enqueueFr(4);
+        deque.enqueueFr(5);
+        deque.dequeueFr();
+
+        deque.enqueueRe(6);
+        assertThat(deque.dequeueRe()).isEqualTo(6);
+        assertThat(deque.dequeueFr()).isEqualTo(4);
     }
 
     @Test
@@ -76,13 +91,13 @@ class IntDequeTest {
     @Test
     void enqueueFrontAndDequeueRear_엘리먼트_반환하지_않음() {
         deque.enqueueFr(50);
-        assertEquals(-1, deque.dequeueRe());
+        assertEquals(50, deque.dequeueRe());
     }
 
     @Test
     void enqueueRearAndDequeueFront_엘리먼트_반환하지_않음() {
         deque.enqueueRe(60);
-        assertEquals(-1, deque.dequeueFr());
+        assertEquals(60, deque.dequeueFr());
     }
 
     @Test
