@@ -26,6 +26,7 @@ fun q2(x: Int, y: Int): Int {
         b = temp % b
     }
 
+
     return a
 }
 
