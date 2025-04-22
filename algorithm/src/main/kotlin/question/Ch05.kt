@@ -4,7 +4,8 @@ fun main() {
 //    println(q1(4))
 //    println(q2(3, 6))
 //    println(q2(5, 15))
-    println(gcdArray(intArrayOf(12, 6, 9)))
+//    println(gcdArray(intArrayOf(12, 6, 9)))
+    println(gcdArrayV2(intArrayOf(12, 6, 3, 4), 0, 4))
 }
 
 fun q1(n: Int): Int {
@@ -26,11 +27,9 @@ fun q2(x: Int, y: Int): Int {
         b = temp % b
     }
 
-
     return a
 }
 
-// TODO 배열도 재귀 함수 방법으로 고민 필요
 fun gcdArray(a: IntArray): Int {
     if (a.isEmpty()) return 0
     var result = a[0]
@@ -39,6 +38,13 @@ fun gcdArray(a: IntArray): Int {
     }
 
     return result
+}
+
+fun gcdArrayV2(a: IntArray, idx: Int, size: Int): Int {
+    if (size == 1) return a[0]
+    else if (size == 2) return gcd(a[idx], a[idx + 1])
+    else return gcd(a[idx], gcdArrayV2(a, idx + 1, size - 1))
+
 }
 
 fun gcd(a: Int, b: Int): Int {
