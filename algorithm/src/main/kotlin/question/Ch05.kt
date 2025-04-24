@@ -1,14 +1,13 @@
 package question
 
-import java.util.*
-
 fun main() {
 //    println(q1(4))
 //    println(q2(3, 6))
 //    println(q2(5, 15))
 //    println(gcdArray(intArrayOf(12, 6, 9)))
 //    println(gcdArrayV2(intArrayOf(12, 6, 3, 4), 0, 4))
-    q5(1)
+//    q5(1)
+    q6(3, 1, 3)
 }
 
 fun q1(n: Int): Int {
@@ -84,3 +83,38 @@ fun q5(n: Int) {
     }
 }
 
+fun q6(n: Int, x: Int, y: Int) {
+    val arr = arrayOf("A기둥", "B기둥", "C기둥")
+
+    if (n > 1) {
+        q6(n - 1, x, 6 - x - y)
+    }
+    println("${arr[x - 1]}에서 ${arr[y - 1]}으로 ${n}을 옮겼습니다.")
+    if (n > 1) {
+        q6(n - 1, 6 - x - y, y)
+    }
+}
+
+
+fun q7(n: Int, x: Int, y: Int) {
+    val arr = arrayOf("A기둥", "B기둥", "C기둥")
+
+    var n = n
+    var x = x
+    var y = y
+    val xStk = IntArray(100)
+    val yStk = IntArray(100)
+    val sStk = IntArray(100)
+    var ptr = -1
+
+    while (true) {
+        if (n > 0) {
+            xStk[++ptr] = x
+            yStk[ptr] = y
+            n = n -1
+            y = 6 - x - y
+            continue
+        }
+        println("${n}을 ${x}기둥에서 ${y}기둥으로 옮겼습니다.")
+    }
+}
