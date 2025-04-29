@@ -15,16 +15,19 @@ fun hanoi(n: Int, from: Int, to: Int, via: Int) {
         val current = stack.removeLast()
         when (current.phase) {
             0 -> {
-                if (current.n == 0) continue
+                if (current.n <= 0) {
+                    continue
+                }
                 current.phase = 1
                 stack.addLast(current)
-
                 stack.addLast(State(current.n - 1, current.from, current.via, current.to))
             }
-            1 ->{
-                println("${current.n}을 ${current.from} -> ${current.to}")
+
+            1 -> {
+                println("Move disk ${current.n} from ${current.from} to ${current.to}")
                 current.phase = 2
                 stack.addLast(current)
+
                 stack.addLast(State(current.n - 1, current.via, current.to, current.from))
             }
             2 -> {
