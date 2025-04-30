@@ -7,7 +7,8 @@ fun main() {
 //    println(gcdArray(intArrayOf(12, 6, 9)))
 //    println(gcdArrayV2(intArrayOf(12, 6, 3, 4), 0, 4))
 //    q5(1)
-    q6(3, 1, 3)
+//    q6(3, 1, 3)
+    q8Queen(0)
 }
 
 fun q1(n: Int): Int {
@@ -111,10 +112,50 @@ fun q7(n: Int, x: Int, y: Int) {
         if (n > 0) {
             xStk[++ptr] = x
             yStk[ptr] = y
-            n = n -1
+            n = n - 1
             y = 6 - x - y
             continue
         }
         println("${n}을 ${x}기둥에서 ${y}기둥으로 옮겼습니다.")
     }
+}
+
+val nArr = IntArray(8)
+val nFlag = BooleanArray(8)
+val xFlag = BooleanArray(15)
+val yFlag = BooleanArray(15)
+
+fun q8Queen(i: Int) {
+
+    for (j in 0..7) {
+
+        if (nFlag[j] || xFlag[i + j] || yFlag[i - j + 7]) continue
+        nArr[i] = j
+        if (i == 7) {
+            q8_print(nArr)
+        } else {
+            nFlag[j] = true
+            xFlag[i + j] = true
+            yFlag[i - j + 7] = true
+
+            q8Queen(i + 1)
+            nFlag[j] = false
+            xFlag[i + j] = false
+            yFlag[i - j + 7] = false
+        }
+    }
+}
+
+fun q8_print(nArr: IntArray) {
+    for (row in 0..7) {
+        for (col in 0..7) {
+            if (nArr[col] == row) {
+                print("${row} ")
+            } else {
+                print("x ")
+            }
+        }
+        println()
+    }
+    println("====================")
 }
